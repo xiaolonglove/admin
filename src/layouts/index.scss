@@ -1,0 +1,104 @@
+@import "../common/style/variable";
+
+.layout {
+  height: 100%;
+  .ant-layout-sider-collapsed {
+    .anticon {
+      font-size: 16px;
+      // margin-left: 8px;
+    }
+    .ant-menu-submenu-vertical > .ant-menu-submenu-title:after{
+      display: none;
+    }
+    .ant-menu-dark {
+      &.ant-menu-inline {
+        .ant-menu-item-selected {
+          background-color: #5f5f5f !important;
+        }
+      }
+    }
+    .ant-menu-dark:not(.ant-menu-inline) .ant-menu-submenu-open {
+      color: inherit;
+    }
+  }
+  > .ant-layout-sider {
+    > .ant-layout-sider-children {
+      > .logo{
+        height: 32px;
+        background: #333;
+        border-radius: 6px;
+        margin: 16px;
+      }
+      > .ant-menu-root {
+        background-color: transparent;
+        > .ant-menu-item {
+          margin-bottom: 0;
+          color: $color-b;
+          font-size: 12px;
+        }
+        > .ant-menu-submenu {
+          margin-bottom: 0;
+          color: $color-b;
+          > .ant-menu-inline, .ant-menu-sub {
+            background-color: #000c17;
+            -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+            > .ant-menu-item-selected {
+              background-color: #304156 !important;
+            }
+          }
+          .nav-text {
+            font-size: 12px;
+          }
+        }
+        > .ant-menu-item-selected, .ant-menu-item-active {
+          color: $bg-f;
+          background-color: #304156 !important;
+          .nav-text {
+            font-size: 12px;
+          }
+        }
+        
+        &.ant-menu-inline, &.ant-menu-vertical {
+          // background: $color;
+          border-right: 1px solid $color;
+          color: $color-b;
+
+          .ant-menu-submenu-title {
+              .ant-menu-submenu-arrow {
+                  &::before, &::after {
+                      background: $bg-f;
+                  }
+              }
+              &:hover {
+                  color: $bg-f;
+                  .ant-menu-submenu-arrow {
+                      &::before, &::after {
+                          background: $bg-f;
+                      }
+                  }
+              }
+          }
+          .ant-menu-item > a:hover {
+              color: $bg-f;
+          }
+        }
+      }
+    }
+  }
+  > .layout-right {
+    > header {
+      .trigger {
+        font-size: 16px;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 16px;
+        cursor: pointer;
+        -webkit-transition: color .3s;
+        -o-transition: color .3s;
+        transition: color .3s;
+      }
+    }
+  }
+}
+

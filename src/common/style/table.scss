@@ -1,0 +1,41 @@
+.table {
+  height: 100%;
+  .ant-spin-nested-loading {
+    height: 100%;
+    .ant-spin-container {
+      height: 100%;
+      .ant-table {
+        height: calc(100% - 40px);
+        .ant-table-content {
+          height: 100%;
+          .ant-table-scroll {
+            height: 100%;
+            overflow: hidden;
+            .ant-table-body {
+              height: calc(100% - 32px);
+            }
+          }
+        }
+      }
+      .ant-table-pagination {
+        margin: 8px 8px 8px 0;
+      }
+      .ant-pagination {
+        margin: 8px 8px 8px 0;
+      }
+    }
+  }
+   // 被选中的表格行的样式
+  .clickRowStyl {
+    background-color: $color-background-highlight;
+    .ant-table-tbody>.clickRowStyl:hover>td {
+      background-color: $color-background-highlight;
+    }
+  }
+
+}
+.detail {
+  .table-box {
+    height: calc(100% - 60px);
+  }
+}

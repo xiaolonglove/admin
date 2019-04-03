@@ -1,0 +1,64 @@
+@import "./variable.scss";
+.vrv-layout {
+  height: calc(100vh - 80px);
+  margin-top: -10px;
+  overflow: hidden;
+  .vrv-layout-title {
+    color: $color-weak;
+    font-size: 12px;
+    height: 25px;
+    a {
+      color: currentColor;
+    }
+    a:hover{
+      color: $color-a;
+    }
+  }
+  .vrv-layout-content {
+    height: calc(100% - 18px);
+    overflow: hidden;
+    .sider {
+      .ant-card-head {
+        min-height: 30px;
+      }
+      .ant-card-head-title {
+        padding: 8px 0;
+      }
+    }
+    .content {
+      // padding-bottom: 6px;
+      .tabs {
+        height: 100%;
+      }
+      .tabs > .ant-tabs-bar .ant-tabs-tab {
+        background-color: transparent;
+      }
+      .tabs > .ant-tabs-bar .ant-tabs-tab-active {
+        background-color: $bg-f;
+      }
+      .tabs > .ant-tabs-content {
+        height: calc(100% - 40px);
+        padding-top: 6px;
+      }
+      .tabs > .ant-tabs-content .ant-tabs-tabpane{
+        height: 100%;
+      }
+      
+      .ant-card-head {
+        min-height: 30px;
+      }
+      .ant-card-head-title{
+        padding: 5px 0;
+        font-size: 15px;
+        font-weight: 500
+      }
+      .ant-card-extra {
+        padding: 5px 0;
+        font-size: 14px;
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
