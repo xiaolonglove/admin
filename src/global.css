@@ -3,3 +3,29 @@ html, body, :global(#root) {
   height: 100%;
 }
 
+.ant-layout {
+  min-height: 100vh;
+}
+
+.clear{
+  display: block;
+  overflow: hidden;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.y-center{
+  display: flex;
+  align-items: center;
+}
+.block{
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.none{
+  display: none;
+}

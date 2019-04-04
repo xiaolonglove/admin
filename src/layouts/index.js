@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withRouter from 'umi/withRouter';
-import { Layout, Icon, Menu } from 'antd';
+import { Layout, Icon } from 'antd';
 import  './index.scss';
 import menus  from '@/services/menus.js';
 import SiderMenu from './SiderMenu';
@@ -19,8 +19,48 @@ class Index extends Component {
     });
   }
 
+  getKeys = (arr, name) => {
+    let _data = [];
+      const parent = arr.filter(item => {
+        if(item.key === name) {
+
+        }
+        return 
+      })
+     
+      return _data;
+  }
+
   render() {
+
     const { children, location } = this.props;
+    const { pathname } = location;
+    if ('/login' === pathname) {
+      return <div>我只是个假页面</div>;
+    }else if('/404' === pathname) {
+      return children;
+    }
+
+    
+    var getLists = (arr) => {
+      let lists = [];
+      var handleList = (arr) => {
+        arr.forEach(item => {
+          lists.push(item);
+          const { childrens } = item;
+          if(childrens) {
+            handleList(childrens)
+          }
+        });
+      }
+      handleList(arr)
+      return lists;
+    }
+    const lists = getLists(menus);
+    // console.log(lists);
+
+    var keys = this.getKeys(lists, pathname)
+    // console.log(keys);
 
     return (
       <Layout className="layout">
@@ -34,7 +74,8 @@ class Index extends Component {
             menus={menus}
             theme="dark"
             mode="inline"
-            // selectedKeys={[this.state.selectedKey]}
+            openKeys={['asset']}
+            // selectedKeys={[pathname]}
           />
         </Sider>
         <Layout className="layout-right">

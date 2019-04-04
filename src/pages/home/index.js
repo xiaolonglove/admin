@@ -3,7 +3,7 @@ import React from 'react';
 function IndexPage() {
   return (
     <div>
-      hello
+      hello a
     </div>
   );
 }

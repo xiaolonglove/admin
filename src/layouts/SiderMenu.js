@@ -24,18 +24,20 @@ const renderSubMenu = ({ key, title, icon, childrens, ...props }) =>
       </span>
     }
   >
-    {childrens && childrens.map(item => renderMenuItem(item))}
+    {childrens && childrens.map(item =>  renderMenuItem(item))}
   </Menu.SubMenu>;
 
 
-export default ({ menus, ...props }) => {
-  const { list } = menus;
-  console.log(list)
+const renderMenu = (arr) => {
+  return arr.map(item => 
+    item.childrens ? renderSubMenu(item) : renderMenuItem(item)
+  )
+}
+  export default ({ menus, ...props }) => {
+  
   return (
     <Menu {...props}>
-      {list && list.length && list.map(item => 
-        item.childrens ? renderSubMenu(item) : renderMenuItem(item)
-      )}
+      {menus && menus.length && renderMenu(menus)}
     </Menu>
   )
 }
