@@ -2,42 +2,39 @@ import React from 'react';
 import { Menu, Icon } from 'antd';
 import Link from 'umi/link';
 
-const renderMenuItem = ({ key, title, icon, ...props }) => 
-  <Menu.Item
-    key={key}
-    {...props}
-  >
-    <Link to={key}>
-        {icon && <Icon type={icon} />}
-        <span className="nav-text">{title}</span>
-    </Link>
-  </Menu.Item>;
-
-const renderSubMenu = ({ key, title, icon, childrens, ...props }) => 
-  <Menu.SubMenu
-    key={key}
-    {...props}
-    title={
-      <span>
-        {icon && <Icon type={icon} />}
-        <span className="nav-text">{title}</span>
-      </span>
+const generateMenus = data => {
+  return data.map(item => {
+    if (item.childrens) {
+      return (
+        <Menu.SubMenu
+          key={item.key}
+          title={
+            <span>
+            {item.icon && <Icon type={item.icon} />}
+            <span className="nav-text">{item.title}</span>
+          </span>
+          }
+        >
+          {generateMenus(item.childrens)}
+        </Menu.SubMenu>
+      )
     }
-  >
-    {childrens && childrens.map(item =>  renderMenuItem(item))}
-  </Menu.SubMenu>;
-
-
-const renderMenu = (arr) => {
-  return arr.map(item => 
-    item.childrens ? renderSubMenu(item) : renderMenuItem(item)
-  )
+    return (
+      <Menu.Item key={item.key}>
+        <Link to={item.key}>
+          {item.icon && <Icon type={item.icon} />}
+          <span className="nav-text">{item.title}</span>
+        </Link>
+      </Menu.Item>
+    )
+  })
 }
-  export default ({ menus, ...props }) => {
+
+export default ({ menus, ...props }) => {
   
   return (
     <Menu {...props}>
-      {menus && menus.length && renderMenu(menus)}
+      {generateMenus(menus)}
     </Menu>
   )
 }

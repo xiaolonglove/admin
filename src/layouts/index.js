@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withRouter from 'umi/withRouter';
 import { Layout, Icon } from 'antd';
 import  './index.scss';
-import menus  from '@/services/menus.js';
+import { menus, menusGroup }  from '@/services/menus.js';
 import SiderMenu from './SiderMenu';
 
 const { Header, Sider, Content } = Layout;
@@ -10,7 +10,23 @@ const { Header, Sider, Content } = Layout;
 class Index extends Component {
   state = {
     collapsed: false,
+    firstHide: true,
     selectedKey: '',
+    openKeys: []
+  };
+
+  componentDidMount() {
+    this.setMenuOpen(this.props);
+  }
+
+  setMenuOpen = props => {
+    const { pathname } = props.location;
+    var openKeys = this.getKeys(menusGroup, pathname)
+  
+    this.setState({
+      openKeys,
+      selectedKey: pathname
+    });
   };
 
   toggle = () => {
@@ -19,48 +35,41 @@ class Index extends Component {
     });
   }
 
+  menuClick = e => {
+    const openKeys = this.state.openKeys.filter(item => item != e.key);
+    this.setState({
+      openKeys,
+      selectedKey: e.key,
+    });
+  };
+
   getKeys = (arr, name) => {
     let _data = [];
-      const parent = arr.filter(item => {
-        if(item.key === name) {
+    handleFilter(arr, name)
 
-        }
-        return 
+    function handleFilter(arr, name) {
+      const elm = arr.filter(item => {
+        return item.key === name
       })
-     
-      return _data;
+      const parent = elm[0].parent
+      if (parent) {
+        _data.push(parent)
+        handleFilter(arr, parent)
+      }
+    }
+    return _data;
   }
 
   render() {
 
     const { children, location } = this.props;
     const { pathname } = location;
+    const { selectedKey, openKeys } = this.state;
     if ('/login' === pathname) {
       return <div>我只是个假页面</div>;
     }else if('/404' === pathname) {
       return children;
     }
-
-    
-    var getLists = (arr) => {
-      let lists = [];
-      var handleList = (arr) => {
-        arr.forEach(item => {
-          lists.push(item);
-          const { childrens } = item;
-          if(childrens) {
-            handleList(childrens)
-          }
-        });
-      }
-      handleList(arr)
-      return lists;
-    }
-    const lists = getLists(menus);
-    // console.log(lists);
-
-    var keys = this.getKeys(lists, pathname)
-    // console.log(keys);
 
     return (
       <Layout className="layout">
@@ -74,8 +83,14 @@ class Index extends Component {
             menus={menus}
             theme="dark"
             mode="inline"
-            openKeys={['asset']}
-            // selectedKeys={[pathname]}
+            openKeys={openKeys}
+            onClick={this.menuClick}
+            selectedKeys={[selectedKey]}
+            onOpenChange={openKeys => {
+              this.setState({
+                openKeys,
+              })
+            }}
           />
         </Sider>
         <Layout className="layout-right">
