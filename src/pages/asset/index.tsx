@@ -2,15 +2,16 @@
 	资产
 */
 import React from 'react';
+import './asset.scss'
 import HOCRegionTree from '@/components/HOCRegionTree';
+import AssetPage from './assetPage';
 
 
 const Page = (props) => {
-	console.log(props);
+	const { pane } = props;
   return (
-		<div>asset</div>
+		<AssetPage pane={pane} />
 	)
 }
-Page.propTypes = {
-};
+
 export default HOCRegionTree(Page)

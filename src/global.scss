@@ -1,0 +1,91 @@
+@import "./common/style/variable.scss";
+@import  './common/style/common.scss';
+@import  './common/style/layout.scss';
+
+html, body, :global(#root) {
+  height: 100%;
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+.clear{
+  display: block;
+  overflow: hidden;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.y-center{
+  display: flex;
+  align-items: center;
+}
+
+.inline {
+  display: inline;
+}
+
+.w-auto {
+  width: auto;
+}
+.h-auto {
+  height: auto;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-v {
+  height: 100vh;
+}
+
+.h-v-5 {
+  height: 50vh;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.w-40 {
+  width:  40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+}
+
+.chart {
+  width: 100%!important;
+  height: 100%!important;
+}
+.show {
+  display: block!important;
+}
+.hide {
+  display: none!important;
+}
+.ant-row-flex {
+  height: auto;
+  line-height: 38px;
+  border: 1px solid #eeeeee;
+  border-bottom: 0px;
+  padding: 0 16px;
+}
+.toolbar, .toolbar-group {
+  position: absolute;
+  right: 16px;
+} 
+.bottom-border {
+  border-top-style: dashed !important;
+  border-top-width: 1px !important;
+  border-top-color: rgba(170, 170, 170, 0.45) !important;
+}

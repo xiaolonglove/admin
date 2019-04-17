@@ -1,12 +1,13 @@
 @import "./variable.scss";
 .vrv-layout {
   height: calc(100vh - 80px);
-  margin-top: -10px;
   overflow: hidden;
   .vrv-layout-title {
     color: $color-weak;
     font-size: 12px;
-    height: 25px;
+    height: 30px;
+    line-height: 25px;
+    padding-left: 8px;
     a {
       color: currentColor;
     }

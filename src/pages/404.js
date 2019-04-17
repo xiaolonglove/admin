@@ -1,4 +1,4 @@
-import NotFound from '@/components/pages/NotFound';
+import NotFound from '@/components/NotFound';
 
 export default () => {
   return (

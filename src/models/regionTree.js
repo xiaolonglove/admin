@@ -14,12 +14,11 @@ export default {
   },
   effects: {
     *query({ payload }, { select, call, put }){
+      
       const { type } = payload;
-      const tree = yield call(getRegionTree);
-      const { _treeData } = tree;
-      console.log(_treeData);
+      const { data } = yield call(getRegionTree);
       // 全网 or 不含全网
-      const treeData = type? (_treeData[0].children || []): _treeData;
+      const treeData = type? (data[0].children || []): data;
       const guids = getGuids(treeData);
 
       yield put({

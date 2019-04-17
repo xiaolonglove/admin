@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withRouter from 'umi/withRouter';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, LocaleProvider } from 'antd';
+import zh_cn from 'antd/lib/locale-provider/zh_CN';
 import  './index.scss';
 import { menus, menusGroup }  from '@/services/menus.js';
 import SiderMenu from './SiderMenu';
@@ -76,43 +77,42 @@ class Index extends Component {
     }
 
     return (
-      <Layout className="layout">
-        <Sider
-          trigger={null}
-          breakpoint="lg"
-          collapsed={this.state.collapsed}
-        >
-          <div className="logo" />
-          <SiderMenu 
-            menus={menus}
-            theme="dark"
-            mode="inline"
-            openKeys={openKeys}
-            onClick={this.menuClick}
-            selectedKeys={[selectedKey]}
-            onOpenChange={openKeys => {
-              this.setState({
-                openKeys,
-              })
-            }}
-          />
-        </Sider>
-        <Layout className="layout-right">
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-          </Header>
-          <Content style={{
-            padding: 8, minHeight: 280,
-          }}
+      <LocaleProvider locale={zh_cn}>
+        <Layout className="layout">
+          <Sider
+            trigger={null}
+            breakpoint="lg"
+            collapsed={this.state.collapsed}
           >
-            {children}
-          </Content>
+            <div className="logo" />
+            <SiderMenu 
+              menus={menus}
+              theme="dark"
+              mode="inline"
+              openKeys={openKeys}
+              onClick={this.menuClick}
+              selectedKeys={[selectedKey]}
+              onOpenChange={openKeys => {
+                this.setState({
+                  openKeys,
+                })
+              }}
+            />
+          </Sider>
+          <Layout className="layout-right">
+            <Header style={{ background: '#fff', padding: 0 }} className='admin-header'>
+              <Icon
+                className="trigger"
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+              />
+            </Header>
+            <Content style={{ padding: 8, minHeight: 280}} className='admin-content'>
+              {children}
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
+      </LocaleProvider>
     )
   }
 }

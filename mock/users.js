@@ -1,12 +1,7 @@
+import mockjs from 'mockjs';
+
 export default {
-  'get /users': {
-    result: [
-      {
-        id: 1,
-        name: 'zhangsan',
-        alias: '张三',
-        email: 'zhangsan@qq.com',
-      }
-    ]
-  }
-}
+  'GET /api/users': mockjs.mock({
+    'list|100': [{ name: '@name', 'value|1-100': 50, 'type|0-2': 1 }],
+  }),
+};

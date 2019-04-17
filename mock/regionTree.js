@@ -1,15 +1,15 @@
 export default {
-  'get /getRegionTree': function (req, res, next) {
+  'get /api/getRegionTree': (req, res) => {
+    
     setTimeout(() => {
-      res.json({
-        result: [
+      res.json(
+        [
           {
             "guid": "0",
             "title": "全网",
             "parentnodes": null,
             "authStatus": null,
             "img": "icon-home",
-            "serverType": null,
             "value": "-1",
             "hasChildren": false,
             "complete": true,
@@ -27,7 +27,6 @@ export default {
                     "authStatus": null,
                     "img": "icon-cput",
                     "children": [],
-                    "serverType": null,
                     "value": "6dfd3f74839242828cd34fd9da6123a1",
                     "hasChildren": false,
                     "complete": true
@@ -46,7 +45,7 @@ export default {
             ]
           }
         ]
-      })
-    }, 500)
+      )
+    }, 300)
   }
 }
