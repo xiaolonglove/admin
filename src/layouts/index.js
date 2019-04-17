@@ -10,7 +10,6 @@ const { Header, Sider, Content } = Layout;
 class Index extends Component {
   state = {
     collapsed: false,
-    firstHide: true,
     selectedKey: '',
     openKeys: []
   };
@@ -21,6 +20,9 @@ class Index extends Component {
 
   setMenuOpen = props => {
     const { pathname } = props.location;
+    if('/login' === pathname || '/404' === pathname) {
+      return
+    }
     var openKeys = this.getKeys(menusGroup, pathname)
   
     this.setState({
@@ -36,7 +38,7 @@ class Index extends Component {
   }
 
   menuClick = e => {
-    const openKeys = this.state.openKeys.filter(item => item != e.key);
+    const openKeys = this.state.openKeys.filter(item => item !== e.key);
     this.setState({
       openKeys,
       selectedKey: e.key,
@@ -51,10 +53,12 @@ class Index extends Component {
       const elm = arr.filter(item => {
         return item.key === name
       })
-      const parent = elm[0].parent
-      if (parent) {
-        _data.push(parent)
-        handleFilter(arr, parent)
+      if (elm.length) {
+        const parent = elm[0].parent
+        if (parent) {
+          _data.push(parent)
+          handleFilter(arr, parent)
+        }
       }
     }
     return _data;

@@ -1,30 +1,49 @@
 export const menus =  [
   { key: '/', title: '首页', icon: 'home', childrens: null, parent: null },
   {
-    key: 'terminal', 
-    title: '终端',
+    key: 'asset', 
+    title: '资产统计',
     icon: 'switcher',
     parent: null,
     childrens: [
       { 
-        key: 'asset', 
+        key: '/asset', 
         title: '资产', 
-        childrens: [
-          { key: '/asset', title: '硬件资产', childrens: null, icon: null, parent: 'asset'},
-          { key: '/os', title: '操作系统', childrens: null, icon: null, parent: 'asset'},
-        ], 
-        icon: null, 
-        parent: 'terminal'
-      },
-      { 
-        key: '/indel', 
-        title: '指标', 
         childrens: null, 
         icon: null, 
-        parent: 'terminal'
+        parent: 'asset'
+      },
+      { 
+        key: '/os', 
+        title: '操作系统', 
+        childrens: null, 
+        icon: null, 
+        parent: 'asset'
       }
     ]
-  }
+  },
+  {
+    key: 'indicator', 
+    title: '指标分析',
+    icon: 'switcher',
+    parent: null,
+    childrens: [
+      { 
+        key: '/indicatorview', 
+        title: '指标概览', 
+        childrens: null, 
+        icon: null, 
+        parent: 'indicator'
+      },
+      { 
+        key: '/registeredRate', 
+        title: '注册率', 
+        childrens: null, 
+        icon: null, 
+        parent: 'indicator'
+      }
+    ]
+  },
 ]
 
 export const menusGroup = getLists(menus)

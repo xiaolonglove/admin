@@ -7,7 +7,6 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "antd": "^3.16.1",
     "babel-plugin-import": "^1.11.0",
     "dva": "^2.4.1",
     "umi": "^1.0.0",
