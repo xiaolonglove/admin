@@ -18,8 +18,10 @@ export default class extends React.PureComponent<any> {
 
   getChartData = () => {
     const { guid, date } = this.props;
-    getLevelLine('DeviceRegisterRate', guid, date).then(data => {
+    getLevelLine('DeviceRegisterRate', guid, date).then(res => {
+      let {data} = res;
       if(Array.isArray(data)) {
+        data = data.sort((a,b) => b.value - a.value)
         initBar('registerRateTop5_'+ guid, data, {suffix: '%', xname: '单位', yname: '百分比'})
       }
     })

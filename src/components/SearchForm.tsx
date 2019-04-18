@@ -55,7 +55,7 @@ class SearchForm extends React.PureComponent<any> {
           !!items.length
           ? items.map(name => {
             const label = labels[name] || '';
-            return <Form.Item label={ label } { ...formItemLayout }>
+            return <Form.Item label={ label } { ...formItemLayout } key={name}>
             {getFieldDecorator(
                 name,
                 {initialValue: ""}

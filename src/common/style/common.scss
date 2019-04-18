@@ -69,6 +69,9 @@
 .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-tbody > tr > td {
   padding: 3px 6px;
 }
+.no-flex > .ant-tabs-content > .ant-tabs-tabpane-inactive, .ant-tabs-no-animation > .ant-tabs-content > .ant-tabs-tabpane-inactive {
+  display: none;
+}
 
 *::-webkit-scrollbar {
   height: 8px;

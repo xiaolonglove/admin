@@ -1,8 +1,15 @@
 import request from '@/common/js/request';
+import { urlParam } from '@/common/js/utils';
+
+// {
+//   method: 'POST',
+//   body: {guid},
+// }
 
 export function getRegionTree() {
   return request('/api/getRegionTree');
 }
+
 /** 获取指标数值
  * @param indicateCode 指标code
  * @param tclasshelperId 级联id
@@ -31,28 +38,18 @@ export async function getIndicateValue(indicateCode, tclasshelperId, date) {
   // return request(`/api/getIndicateValue`);
 }
 
-/** 获取指标的级联轴
+/** 获取指标率列表
  * @param indicateCode 指标code
  * @param tclasshelperId 级联id
  * @return {Array}
  */
 export async function getLevelLine(indicateCode, tclasshelperId, date) {
  
-  return new Promise((res, rej) => {
-    const data = [
-      {name: "单位1", value: 45.2},
-      {name: "单位2", value: 14.1},
-      {name: "单位3", value: 14.2},
-      {name: "单位4", value: 98.66},
-      {name: "单位5", value: 10},
-    ]
-    res(data);
-  })
+  return request(`/api/getLevelLine?${urlParam({indicateCode, tclasshelperId, date})}`);
 
-  // return request(`/api/getLevelSersieBar`);
 }
 
-/** 获取版本号数量轴  (资产统计/资产) 
+/** 获取版本号数量列表  (资产统计/资产) 
  * @param indicateCode 指标code
  * @param tclasshelperId 级联id
  * @return {Array}
