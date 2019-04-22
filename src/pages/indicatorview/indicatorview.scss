@@ -1,0 +1,20 @@
+.indicatorview {
+  height: 100%;
+  .top, .bottom {
+    height: 50%;
+    .col {
+      height: 100%;
+      > .ant-card {
+        > .ant-card-body{
+          height: calc(100% - 32px);
+        }
+      }
+    }
+    .col:nth-child(2) {
+      .ant-card-body {
+        padding: 0;
+      }
+    } 
+  }
+}
+

@@ -217,3 +217,61 @@ export async function getAntivirusRateDetails(param) {
 
   // assetsDetails/getAntivirusRateDetails
 }
+
+/** 获取操作系统数量轴   (资产统计/操作系统)
+ * @param tclasshelperId 级联id
+ * @return {Array}
+ */
+export async function getOperatingSystem(tclasshelperId = "") {
+ 
+  return new Promise((res, rej) => {
+    const data = [
+      {name: "Windows 7", value: 5634},
+      {name: "Windows XP", value: 2248},
+      {name: "Windows 10", value: 1180},
+      {name: "Windows 8", value: 18},
+    ]
+    res(data);
+  })
+}
+
+/** 获取XP系统区域排名   (资产统计/操作系统)
+ * @param tclasshelperId 级联id
+ * @return Array
+ */
+export async function getOperatingSystemXpTop(tclasshelperId = "") {
+ 
+  return new Promise((res, rej) => {
+    const data = [
+      {
+      "os_xp": 2198,
+      "regName": "级联单位2"
+      },
+      {
+      "os_xp": 765,
+      "regName": "级联单位1"
+      }
+    ]
+    res(data);
+  })
+}
+/** 获取WIN7系统区域排名 (资产统计/操作系统)
+ * @param tclasshelperId 级联id
+ * @return {Array}
+ */
+export async function getOperatingSystemWin7Top(tclasshelperId = "") {
+ 
+  return new Promise((res, rej) => {
+    const data = [
+      {
+      "os_7": 2285,
+      "regName": "级联单位2"
+      },
+      {
+      "os_7": 1825,
+      "regName": "级联单位1"
+      },
+    ]
+    res(data);
+  })
+}

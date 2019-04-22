@@ -1,5 +1,5 @@
 var path = require('path');
-// var { routes } = require("./src/router.js");
+var { routes } = require("./src/router.js");
 
 export default {
   plugins: ['umi-plugin-dva'],
@@ -14,7 +14,7 @@ export default {
   "extraBabelPlugins": [
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ],
-  // routes: routes,
+  routes: routes,
   "alias": {
     "@": path.resolve("./src"),
   }
