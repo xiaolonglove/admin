@@ -7,21 +7,10 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Tree, Card, Input } from 'antd';
+
+
 const Search = Input.Search;
-
-const dataList = [];
-const generateList = (data) => {
-  for (let i = 0; i < data.length; i++) {
-    const node = data[i];
-    const guid = node.guid;
-    dataList.push({ guid, title: node.title, parentnodes: node.parentnodes});
-    if (node.children) {
-      generateList(node.children);
-    }
-  }
-};
-
-export default class extends React.Component<any> {
+export default class extends React.PureComponent<any> {
 
   state = {
     searchValue: '',
@@ -29,24 +18,27 @@ export default class extends React.Component<any> {
     autoExpandParent: true, // 是否自动展开父节点
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     expandedKeys: [nextProps.treeData[0].guid]
-  //   })
-  // }
+  dataList = []
 
-  // 避免父组件状态更改，重复渲染
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.searchValue != nextState.searchValue
-    || this.state.expandedKeys != nextState.expandedKeys 
-    || this.state.autoExpandParent != nextState.autoExpandParent 
-    || this.props.selectedKeys != nextProps.selectedKeys 
-    || this.props.treeData != nextProps.treeData
+  handleList = (treeData) => {
+    let dataList = [];
+    const generateList = (data) => {
+      for (let i = 0; i < data.length; i++) {
+        const node = data[i];
+        const guid = node.guid;
+        dataList.push({ guid, title: node.title, parentnodes: node.parentnodes});
+        if (node.children) {
+          generateList(node.children);
+        }
+      }
+    }
+    generateList(treeData)
+    this.dataList = dataList
   }
 
   searchChange = (e) => {
     const value = e.target.value;
-    const expandedKeys = dataList.map((item) => {
+    const expandedKeys = this.dataList.map((item) => {
       if (item.title.indexOf(value) > -1) {
         return item.parentnodes;
       }
@@ -71,7 +63,7 @@ export default class extends React.Component<any> {
     const {searchValue, expandedKeys, autoExpandParent} = this.state;
     const { selectedKeys, treeData } = this.props;
     // console.log(expandedKeys);
-    generateList(treeData);
+    this.handleList(treeData);
 
     const renderTreeNodes = data => data.map((item) => {
       const index = item.title.indexOf(searchValue);
@@ -87,13 +79,13 @@ export default class extends React.Component<any> {
       if (item.children) {
         return (
         // @ts-ignore
-        <Tree.TreeNode title={title} key={item.guid} data={item} parent={item.parentnodes} dataRef={item}>
+        <Tree.TreeNode title={title} key={item.guid} item={item} parent={item.parentnodes} dataRef={item}>
           {renderTreeNodes(item.children)}
         </Tree.TreeNode>
         )
       }
       // @ts-ignore
-      return <Tree.TreeNode title={title} key={item.guid} data={item} parent={item.parentnodes} dataRef={item} />;
+      return <Tree.TreeNode title={title} key={item.guid} item={item} parent={item.parentnodes} dataRef={item} />;
     });
 
     return (
@@ -116,7 +108,7 @@ export default class extends React.Component<any> {
             selectedKeys={[selectedKeys]}
             onExpand={this.onExpand}
             autoExpandParent={autoExpandParent}
-            onSelect={(evt, node) => { this.props.callBack(node.selectedNodes[0].props.parent, node.selectedNodes[0].props.data) }}
+            onSelect={(evt, node) => { this.props.callBack(node.selectedNodes[0].props.parent, node.selectedNodes[0].props.item) }}
           >
             {renderTreeNodes(treeData)}
           </Tree>

@@ -44,6 +44,21 @@ export const menus =  [
       }
     ]
   },
+  {
+    key: 'terminalop', 
+    title: '终端配置',
+    icon: 'switcher',
+    parent: null,
+    childrens: [
+      { 
+        key: '/region', 
+        title: '安全域配置', 
+        childrens: null, 
+        icon: null, 
+        parent: 'terminalop'
+      },
+    ]
+  },
 ]
 
 export const menusGroup = getLists(menus)

@@ -10,6 +10,24 @@ export function getRegionTree() {
   return request('/api/getRegionTree');
 }
 
+/**
+ * 获取当前用户所在地区名  (综合管理/终端级联 设置坐标)
+ * @return {Object}
+ */
+export async function getMapValue() {
+ 
+  return new Promise((res, rej) => {
+    const data = {
+      data: ["china", "china"],
+      message: null,
+      success: true
+    }
+    res(data);
+  })
+
+  // /SOC/mapValue  POST
+}
+
 /** 获取指标数值
  * @param indicateCode 指标code
  * @param tclasshelperId 级联id
@@ -274,4 +292,197 @@ export async function getOperatingSystemWin7Top(tclasshelperId = "") {
     ]
     res(data);
   })
+}
+
+
+/**
+ * 获取级联详情  (综合管理/终端级联 )
+ * @param param
+ * @return {Array}
+ */
+export async function getChildCascadeAndSelf(param = {}) {
+  const initParam = {
+    rows: 100000,
+    page: 1,
+    regName: '',
+    regIp: '',
+    guid: ''
+  }
+  return new Promise((res, rej) => {
+    const data = [
+      {
+      "guid": "8bfd3f74839242828cd34fd9da6123f0",
+      "key": "8bfd3f74839242828cd34fd9da6123f0",
+      "regCode": null,
+      "regName": "级联单位2",
+      "regIp": "192.168.119.7",
+      "upId": "0",
+      "version": "5.2018.0809.1010",
+      "authStatus": 1,
+      "organCode": "1",
+      "sortField": "1",
+      "lat": "30.5843",
+      "lng": "114.2985",
+      "serverType": 1,
+      "securityId": "111",
+      "message": "",
+      "synchronizationDate": "2018-08-15 02:31:52",
+      "validity": 1
+      },
+      {
+      "guid": "59f623886cc342e18d3fba544b8c9f02",
+      "key": "59f623886cc342e18d3fba544b8c9f02",
+      "regCode": null,
+      "regName": "级联单位1",
+      "regIp": "10.3.3.31",
+      "upId": "0",
+      "version": "5.2018.0418.1613",
+      "authStatus": 1,
+      "organCode": "2",
+      "sortField": "2",
+      "lat": "39.9040",
+      "lng": "116.4052",
+      "serverType": 1,
+      "securityId": "112",
+      "message": "",
+      "synchronizationDate": "2018-08-15 02:32:14",
+      "validity": 1
+      }
+    ]
+    res(data);
+  })
+
+  // regionmanager/getChildCascadeAndSelf?rows=10000&page=1
+}
+
+/**
+ * 修改或添加级联  (综合管理/终端级联 添加、编辑)
+ * @param param
+ * @return {Array}
+ */
+export async function getTerminalCascadeEdit(param = {}) {
+  const initParam = {
+    type: 'add',
+    upId: '', // 父guid
+    id: '', // 当前guid
+  }
+  return new Promise((res, rej) => {
+    res('0');
+  })
+
+  // /regionmanager/terminalCascadeEdit?type=edit&id=' + keyValue + '&upId=' +upId  POST
+}
+
+/**
+ * 删除级联  (综合管理/终端级联 删除)
+ * @param guid {String}
+ * @return {Array}
+ */
+export async function delRegion(guid) {
+
+  return new Promise((res, rej) => {
+    res('0');
+  })
+
+  // "/regionmanager/delRegion/" + id
+}
+/**
+ * 判断是否有下级级联  (综合管理/终端级联 删除)
+ * @param guid {String}
+ * @return {Array}
+ */
+export async function hasChildRegion(guid) {
+
+  return new Promise((res, rej) => {
+    res('0');
+  })
+
+  // "/regionmanager/hasChildRegion/" + id
+}
+
+/**
+ * 获取安全域列表  (综合管理/终端级联)
+ * @return {Array}
+ */
+export async function getSecuritydomainTree() {
+  return new Promise((res, rej) => {
+    const data = [
+      {
+        "id": "110",
+        "text": "系统区域",
+        "parentnodes": "0",
+        "img": null,
+        "mapRegionGuid": "",
+        "isLocalRoot": null,
+        "value": "110",
+        "hasChildren": true,
+        "complete": true,
+        "childNodes": [
+          {
+            "id": "111",
+            "text": "区域1",
+            "parentnodes": "110",
+            "img": null,
+            "mapRegionGuid": "",
+            "isLocalRoot": null,
+            "value": "111",
+            "hasChildren": false,
+            "complete": true,
+            "childNodes": []
+          },
+          {
+            "id": "112",
+            "text": "区域2",
+            "parentnodes": "110",
+            "img": null,
+            "mapRegionGuid": "",
+            "isLocalRoot": null,
+            "value": "112",
+            "hasChildren": false,
+            "complete": true,
+            "childNodes": []
+          },
+          {
+            "id": "113",
+            "text": "区域3",
+            "parentnodes": "110",
+            "img": null,
+            "mapRegionGuid": "",
+            "isLocalRoot": null,
+            "value": "113",
+            "hasChildren": false,
+            "complete": true,
+            "childNodes": []
+          },
+          {
+            "id": "114",
+            "text": "区域4",
+            "parentnodes": "110",
+            "img": null,
+            "mapRegionGuid": "",
+            "isLocalRoot": null,
+            "value": "114",
+            "hasChildren": false,
+            "complete": true,
+            "childNodes": []
+          },
+          {
+            "id": "115",
+            "text": "区域5",
+            "parentnodes": "110",
+            "img": null,
+            "mapRegionGuid": "",
+            "isLocalRoot": null,
+            "value": "115",
+            "hasChildren": false,
+            "complete": true,
+            "childNodes": []
+          },
+        ]
+      }
+    ]
+    res(data);
+  })
+
+  // Securitydomain/getKpiSecuritydomainTree
 }

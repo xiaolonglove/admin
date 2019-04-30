@@ -1,0 +1,29 @@
+.regionPage {
+  height: 100%;
+  > .table-box {
+    height: calc(100% - 60px);
+    padding: 0;
+    .table .ant-spin-nested-loading .ant-spin-container .ant-table {
+      height: 100%;
+    }
+  }
+  
+}
+.region-drawer {
+  .ant-drawer-body {
+    height: calc(100% - 110px);
+    > .ant-form {
+      height: 100%;
+      overflow: hidden;
+      > .regionMap-box{
+        height: calc(100% - 290px);
+        position: relative;
+        .chart-box {
+          height: calc(100% - 40px);
+          position: relative;
+        }
+      }
+    }
+  }
+}
+

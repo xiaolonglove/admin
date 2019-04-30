@@ -3,6 +3,7 @@ const beadcrumbs = {
   '/home': [{name: '终端首页', path: '/'}],
   '/asset': [{name: '资产统计', path: null}, {name: '资产', path: '/asset'}],
   '/indicatorview': [{name: '指标分析', path: null}, {name: '指标概览', path: '/indicatorview'}],
+  '/region': [{name: '终端配置', path: null}, {name: '终端级联配置', path: '/region'}],
 }
 
 export default {

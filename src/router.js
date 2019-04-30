@@ -29,6 +29,11 @@ exports.routes = [
         "exact": true,
         "component": './indicatorview/index.tsx' 
       },
+      {
+        "path": "/region",
+        "exact": true,
+        "component": './region/index.tsx' 
+      },
     ]
   }
 ]

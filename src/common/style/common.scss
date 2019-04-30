@@ -72,7 +72,11 @@
 .no-flex > .ant-tabs-content > .ant-tabs-tabpane-inactive, .ant-tabs-no-animation > .ant-tabs-content > .ant-tabs-tabpane-inactive {
   display: none;
 }
-
+.talbe-actions i.anticon, .table-actions i.anticon {
+  cursor: pointer;
+  color: #1E3E63;
+  margin-right: 8px;
+}
 *::-webkit-scrollbar {
   height: 8px;
   width: 4px;
